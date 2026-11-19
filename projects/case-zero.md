@@ -1,7 +1,7 @@
 <!-- NARY OS · HEADER -->
 <table width="100%">
   <tr>
-    <td align="left"><a href="../apps/projects.md">← Back</a> &nbsp;·&nbsp; <a href="../README.md"><img src="../image/ic_home.png" width="18" alt="Home"> Home</a></td>
+    <td align="left"><a href="../apps/projects.md">← Back</a> &nbsp;·&nbsp; <a href="../desktop.md"><img src="../image/ic_home.png" width="18" alt="Home"> Home</a></td>
     <td align="right"><sub>NARY OS v1.0</sub></td>
   </tr>
 </table>

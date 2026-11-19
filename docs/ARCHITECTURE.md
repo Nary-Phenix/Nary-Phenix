@@ -8,7 +8,8 @@
 
 ```
 Nary-Phenix/
-├── README.md                 # Bureau (Desktop)
+├── README.md                 # Écran de verrouillage (boot.gif cliquable)
+├── desktop.md                # Bureau (écran principal)
 ├── image/
 │   ├── wallpaper.png         # fond du bureau
 │   ├── lockscreen.png        # écran de verrouillage
@@ -30,6 +31,7 @@ Nary-Phenix/
 │   ├── ic_battery.png
 │   ├── ic_volume.png
 │   ├── ic_brightness.png
+│   ├── desktop/              # tranches du bureau (générées, voir §5)
 │   ├── dock/
 │   │   ├── dock_home.png
 │   │   ├── dock_projects.png
@@ -82,9 +84,9 @@ Règles générales : pas d'espaces, pas d'accents, pas de majuscules dans les c
 ## 3. Liens et chemins
 
 - **Tous les liens et images sont relatifs.** Aucun lien absolu vers `github.com/.../blob/...`, sauf pour les dépôts de projets.
-- Depuis `README.md` : `apps/about.md`, `image/ic_about.png`.
-- Depuis `apps/*.md` : `../README.md`, `../image/ic_about.png`.
-- Depuis `projects/*.md` : `../README.md`, `../apps/projects.md`, `../image/...`.
+- Depuis `README.md` et `desktop.md` : `apps/about.md`, `image/ic_about.png`.
+- Depuis `apps/*.md` : `../desktop.md` (Home et Back), `../image/ic_about.png`.
+- Depuis `projects/*.md` : `../desktop.md`, `../apps/projects.md`, `../image/...`.
 - Un seul `README.md` est rendu sur le profil ; les pages `apps/` et `projects/` s'ouvrent comme des fichiers Markdown rendus.
 - Lien vers un dépôt réel : URL complète `https://github.com/<utilisateur>/<repo>`.
 
@@ -99,7 +101,7 @@ Chaque page `apps/*.md` suit cette structure (finalisée en Phase 4) :
 ```markdown
 <!-- NARY OS · HEADER -->
 <table width="100%"><tr>
-<td align="left"><a href="../README.md">← Back</a> · <a href="../README.md"><img src="../image/ic_home.png" width="18" alt="Home"> Home</a></td>
+<td align="left"><a href="../desktop.md">← Back</a> · <a href="../desktop.md"><img src="../image/ic_home.png" width="18" alt="Home"> Home</a></td>
 <td align="right"><sub>NARY OS v1.0</sub></td>
 </tr></table>
 
@@ -120,19 +122,19 @@ Fiches projets : même structure + section **Repository** avec lien GitHub réel
 
 ---
 
-## 5. Structure du bureau (README.md)
+## 5. Deux écrans : verrouillage et bureau (README.md + desktop.md)
 
-Ordre vertical, adapté à GitHub et au mobile :
+GitHub interdit tout positionnement et toute superposition. Le contournement est de **séparer en deux pages**, exactement comme les applications :
 
-1. **Boot** — `boot.gif` (lecture unique, se fige sur le bureau).
-2. **Barre système** — table d'une ligne : « NARY OS » à gauche, icônes `ic_wifi/bluetooth/volume/brightness/battery` à droite (largeur 20 px).
-3. **Bureau** — `wallpaper.png` pleine largeur avec Phoenix, titre NARY OS et slogan intégrés à l'image (non cliquable).
-4. **Icônes d'applications** — table 4 + 3 colonnes (voir §6), chaque cellule = `<a><img> <br> <b>Nom</b></a>`.
-5. **Identité / slogan** — texte centré sous le bureau (slogan en texte réel, pas seulement en image).
-6. **Dock** — table d'une ligne : `dock_home`, `dock_projects`, `dock_terminal`, `dock_contact`.
-7. **Signature système** — footer avec slogan et version.
+1. **`README.md` = écran de verrouillage.** Il affiche `boot.gif` (qui se termine sur le lockscreen), cliquable : un clic ouvre `desktop.md`. Un lien texte « Cliquer pour déverrouiller » et la signature système (slogan) complètent la page.
+2. **`desktop.md` = bureau.** Une seule scène (barre de menu, Phoenix, titre et slogan, 7 icônes de bureau, dock) dessinée en 1600×1000 puis **découpée en 18 tranches** (`image/desktop/`) : images en ligne sans espace entre les balises, largeurs en % dont la somme fait 100 %, donc recollées en une image continue sur toute largeur d'écran. Chaque tranche portant une icône est liée à son application. Le bloc est généré entre `<!-- DESKTOP:START -->` et `<!-- DESKTOP:END -->` (ne pas le modifier à la main : `python3 image/src/build.py desktop` le réécrit).
+3. **Applications.** Home et Back ramènent à `desktop.md`. Un lien « Verrouiller la session » sous le bureau ramène à `README.md`.
 
-Aucune superposition : chaque élément cliquable est une image indépendante.
+Parcours : `README.md` (verrouillé) → `desktop.md` (bureau) → `apps/*.md` → `projects/*.md`.
+
+Disposition du bureau : barre de menu (48 px) ; About Me, Dev Studio, Projects, Terminal à gauche ; Education, Contact, Settings à droite ; Phoenix, « NARY OS » et slogan au centre ; dock de 4 icônes en bas. Sous le bureau : une ligne de liens texte (lisible sur mobile) et la signature.
+
+> **Important :** le README de profil GitHub est l'écran de verrouillage ; le bureau est donc une page de plus à un clic, pas affiché d'emblée. Ce choix remplace l'exigence initiale « découvrir directement un bureau » : c'est le contournement validé le 2026-11-19 pour obtenir une vraie impression de PC.
 
 ---
 
@@ -141,7 +143,7 @@ Aucune superposition : chaque élément cliquable est une image indépendante.
 - Balises sûres : `table/tr/td`, `a`, `img` (`width`, `height`, `alt`, `align`), `picture`, `br`, `b`, `i`, `sub`, `sup`, `details/summary`, `p align`.
 - Interdit : `style`, `class`, `script`, `iframe`, `svg` inline, `position`, `background`.
 - Largeur utile du README GitHub ≈ 830–900 px sur ordinateur, ≈ 340–390 px sur mobile.
-- **Grille d'icônes : 4 colonnes maximum** (4 + 3). Icône affichée à `width="88"` ; au-delà, retour à la ligne désordonné sur mobile.
+- **Bureau en tranches :** largeurs en %, somme exacte de 100 % par ligne, aucune espace entre les images d'une ligne. Les icônes de bureau mesurent environ 33 px sur un téléphone de 390 px (88 px sur ordinateur) ; la ligne de liens rapides compense la lisibilité des libellés.
 - Toujours définir `width` sur chaque image (évite les sauts de mise en page) et un `alt` descriptif.
 - **Fond clair de GitHub :** les icônes sont livrées **opaques sur tuile sombre** (coins arrondis) pour que le glow reste lisible en thème clair. Pas de PNG transparent avec glow nu (rendu délavé sur blanc, comme dans la référence du dossier néon).
 - Les GIF se lisent automatiquement en boucle ; boot.gif est exporté avec **boucle = 1** pour se figer sur la dernière image.
@@ -196,6 +198,7 @@ Flammes du Phoenix : dégradé `#19E6FF` → `#2D5BFF` → `#8B2BE2` (avec touch
 | `ic_wifi, ic_bluetooth, ic_battery, ic_volume, ic_brightness` | 128×128, tuile opaque | 20 px | PNG | ≤ 20 Ko |
 | `dock/dock_*.png` (4) | 256×256, tuile opaque | 56 px | PNG | ≤ 60 Ko |
 | `banners/banner_*.png` (3) | 1600×400 (4:1) | 100 % | PNG ou WebP | ≤ 400 Ko |
+| `desktop/desk_*.png` (18) | tranches d'une scène 1600×1000 | 100 % (en tranches) | PNG | ≈ 700 Ko au total |
 
 Les budgets des icônes ont été relevés (palette réduite = dégradés et glows abîmés). Budget total des images : **≈ 12 Mo maximum** (actuellement ≈ 5 Mo), pour un chargement rapide sur mobile.
 

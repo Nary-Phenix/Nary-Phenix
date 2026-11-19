@@ -1,7 +1,7 @@
 <!-- NARY OS · HEADER -->
 <table width="100%">
   <tr>
-    <td align="left"><a href="../README.md">← Back</a> &nbsp;·&nbsp; <a href="../README.md"><img src="../image/ic_home.png" width="18" alt="Home"> Home</a></td>
+    <td align="left"><a href="../desktop.md">← Back</a> &nbsp;·&nbsp; <a href="../desktop.md"><img src="../image/ic_home.png" width="18" alt="Home"> Home</a></td>
     <td align="right"><sub>NARY OS v1.0</sub></td>
   </tr>
 </table>
@@ -44,7 +44,7 @@ Une page web ne peut pas exécuter de commandes. Chaque « commande » ci-dessou
 | [`open education`](education.md) | Formations et parcours |
 | [`open contact`](contact.md) | Moyens de contact |
 | [`open settings`](settings.md) | Informations système |
-| [`cd ~`](../README.md) | Retour au bureau |
+| [`cd ~`](../desktop.md) | Retour au bureau |
 
 ## Projets
 

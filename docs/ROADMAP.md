@@ -29,7 +29,7 @@ Légende : ✅ terminé · 🔄 en cours · ⬜ à faire
 
 **Point de validation :** assets et design du bureau, avant de continuer.
 
-## Phase 3 — Desktop ✅
+## Phase 3 — Desktop 🔄 (refait le 2026-11-19 : écran de verrouillage + bureau en scène unique, à valider)
 
 - ✅ `README.md` principal : boot, barre système, bureau, grille d'icônes, identité/slogan, dock, signature
 - ✅ Intégration des ressources

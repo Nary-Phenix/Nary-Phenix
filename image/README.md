@@ -11,7 +11,7 @@ Remplace le fichier en gardant **exactement le même nom et les mêmes dimension
 ```bash
 cd image/src
 python3 build.py                # tout régénérer
-python3 build.py ic_about boot  # seulement certains assets
+python3 build.py ic_about boot desktop  # seulement certains assets
 ```
 Prérequis : `rsvg-convert`, ImageMagick (`convert`), Python 3 + Pillow.
 - Couleurs et pictogrammes des icônes : `src/icons.py`
@@ -63,6 +63,21 @@ Le slogan officiel n'est défini qu'à un seul endroit (`SLOGAN` dans `src/asset
 | `ic_battery.png` | 128×128 | `src/ic_battery.svg` |
 | `ic_volume.png` | 128×128 | `src/ic_volume.svg` |
 | `ic_brightness.png` | 128×128 | `src/ic_brightness.svg` |
+
+## Bureau (`desktop/`)
+
+18 tranches **générées** d'une scène unique de 1600×1000 (barre de menu, Phoenix, titre/slogan, icônes de bureau, dock). Elles se recollent dans `desktop.md`. Ne pas les remplacer une à une : modifier `src/desktop.py` (icônes, disposition) puis lancer `python3 build.py desktop`, qui régénère les tranches **et** le bloc de `desktop.md`.
+
+| Fichiers | Rôle |
+|---|---|
+| `desk_bar.png` | Barre de menu |
+| `desk_about.png`, `desk_devstudio.png`, `desk_projects.png`, `desk_terminal.png` | Icônes de bureau gauche (liées) |
+| `desk_education.png`, `desk_contact.png`, `desk_settings.png` | Icônes de bureau droite (liées) |
+| `desk_r1_mid.png` … `desk_r4_mid.png` | Zone centrale (Phoenix, titre, slogan) |
+| `desk_dock_home.png`, `desk_dock_projects.png`, `desk_dock_terminal.png`, `desk_dock_contact.png` | Dock (liées) |
+| `desk_dock_left.png`, `desk_dock_right.png` | Remplissage du dock |
+
+Source : `src/desktop.svg` (scène complète) et `src/desktop.py`.
 
 ## Dock (`dock/`)
 

@@ -17,6 +17,7 @@ import tempfile
 from PIL import Image
 
 import assets
+import desktop
 import icons
 import phoenix
 
@@ -93,10 +94,45 @@ def build_boot():
     return out
 
 
+def build_desktop():
+    """Scène de bureau 1600x1000 -> tranches image/desktop/*.png + bloc HTML dans desktop.md."""
+    svg = os.path.join(SRC, "desktop.svg")
+    full = os.path.join(SRC, "desktop_full.png")
+    write(svg, desktop.desktop_svg())
+    render(svg, full, desktop.W, desktop.H)
+    out_dir = os.path.join(IMG, "desktop")
+    os.makedirs(out_dir, exist_ok=True)
+    for f in os.listdir(out_dir):
+        os.remove(os.path.join(out_dir, f))
+    im = Image.open(full).convert("RGB")
+    rows = desktop.slices()
+    total = 0
+    for row in rows:
+        for name, x0, x1, y0, y1, _, _ in row:
+            p = os.path.join(out_dir, name + ".png")
+            im.crop((x0, y0, x1, y1)).save(p, optimize=True)
+            total += os.path.getsize(p)
+    os.remove(full)
+    block = desktop.html_block(rows)
+    write(os.path.join(SRC, "desktop_block.html"), block)
+    readme = os.path.join(os.path.dirname(IMG), "desktop.md")
+    if os.path.exists(readme):
+        t = open(readme, encoding="utf-8").read()
+        a, z = "<!-- DESKTOP:START -->", "<!-- DESKTOP:END -->"
+        if a in t and z in t:
+            t = t[: t.index(a) + len(a)] + "\n" + block + "\n" + t[t.index(z):]
+            write(readme, t)
+    n = sum(len(r) for r in rows)
+    print(f"{'desktop/ (' + str(n) + ' tranches)':34s} {total/KB:8.0f} Ko")
+
+
 def main(argv):
     reg = registry()
-    wanted = argv or list(reg) + ["boot"]
+    wanted = argv or list(reg) + ["boot", "desktop"]
     for name in wanted:
+        if name == "desktop":
+            build_desktop()
+            continue
         if name == "boot":
             out = build_boot()
             print(f"{os.path.relpath(out, IMG):34s} {os.path.getsize(out)/KB:8.0f} Ko")

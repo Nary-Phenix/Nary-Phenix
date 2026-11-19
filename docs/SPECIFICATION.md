@@ -99,8 +99,8 @@ Fiches projets (`projects/`) : `case-zero.md`, `nary-translator.md`, `wordprofes
 - Principale : **Desktop → application** (clic sur une icône).
 - Chaque application propose : bouton **Back**, bouton **Home**, header commun, titre, chemin virtuel, contenu spécifique, footer NARY OS.
 - Définitions :
-  - **Home** = toujours le bureau (`README.md`).
-  - **Back** = niveau précédent (application → bureau ; fiche projet → `apps/projects.md`).
+  - **Home** = toujours le bureau (`desktop.md`). Le `README.md` est l'écran de verrouillage ; un clic sur son GIF ouvre le bureau.
+  - **Back** = niveau précédent (application → bureau `desktop.md` ; fiche projet → `apps/projects.md`).
 - Tous les liens sont **relatifs** (voir `ARCHITECTURE.md`).
 
 ---
