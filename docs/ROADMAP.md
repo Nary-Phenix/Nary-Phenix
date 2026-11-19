@@ -29,17 +29,18 @@ Légende : ✅ terminé · 🔄 en cours · ⬜ à faire
 
 **Point de validation :** assets et design du bureau, avant de continuer.
 
-## Phase 3 — Desktop 🔄 (livré, en attente de validation)
+## Phase 3 — Desktop ✅
 
 - ✅ `README.md` principal : boot, barre système, bureau, grille d'icônes, identité/slogan, dock, signature
 - ✅ Intégration des ressources
 - ✅ Liens cliquables vers les 7 applications (les pages cibles seront créées en Phase 4)
 
-## Phase 4 — Applications ⬜
+## Phase 4 — Applications 🔄 (livré, contenu personnel à compléter)
 
-- ⬜ Templates header/footer
-- ⬜ `about.md`, `dev-studio.md`, `projects.md`, `terminal.md`, `education.md`, `contact.md`, `settings.md`
-- ⬜ Fiches : `case-zero.md`, `nary-translator.md`, `wordprofessional.md`, `nary-os.md` (avec liens vers les vrais dépôts)
+- ✅ Templates header/footer
+- ✅ `about.md`, `dev-studio.md`, `projects.md`, `terminal.md`, `education.md`, `contact.md`, `settings.md`
+- ✅ Fiches : `case-zero.md`, `nary-translator.md`, `wordprofessional.md`, `nary-os.md`
+- ⬜ Contenu à fournir : LinkedIn/e-mail, dates de formation, certifications, fiche WordProfessional, URL exactes des dépôts
 
 ## Phase 5 — Tests ⬜
 
